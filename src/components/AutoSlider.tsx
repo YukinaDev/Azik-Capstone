@@ -45,7 +45,7 @@ export default function AutoSlider() {
       const elements = slideRef.current.querySelectorAll("[data-slide-content]");
       animate(elements, {
         opacity: [0, 1],
-        translateY: [40, 0],
+        translateX: [-60, 0],
         duration: 800,
         easing: "easeOutExpo",
       });
@@ -84,10 +84,10 @@ export default function AutoSlider() {
             {index === currentIndex && (
               <div className="absolute bottom-24 left-0 right-0 px-6 md:px-14 lg:px-24">
                 <div className="space-y-4" data-slide-content>
-                  <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0] font-[var(--font-wolf)]">
+                  <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
                     {slide.category}
                   </p>
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-wolf)] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]" style={{ fontFamily: 'var(--font-wolf)' }}>
                     {slide.title}
                   </h2>
                 </div>

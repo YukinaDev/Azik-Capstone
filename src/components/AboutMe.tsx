@@ -35,9 +35,32 @@ export default function AboutMe() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const titleObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && titleRef.current) {
+            animate(titleRef.current.children, {
+              opacity: [0, 1],
+              translateX: [-60, 0],
+              duration: 800,
+              delay: (_el: unknown, i: number) => i * 100,
+              easing: "easeOutExpo",
+            });
+            titleObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (titleRef.current) {
+      titleObserver.observe(titleRef.current);
+    }
+
+    const cardsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && cardsContainerRef.current) {
@@ -49,17 +72,21 @@ export default function AboutMe() {
               delay: (_el: unknown, i: number) => i * 150,
               easing: "easeOutExpo",
             });
+            cardsObserver.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (cardsContainerRef.current) {
+      cardsObserver.observe(cardsContainerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      titleObserver.disconnect();
+      cardsObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -68,11 +95,11 @@ export default function AboutMe() {
       ref={sectionRef}
       className="relative py-24 px-6 md:px-14 lg:px-24"
     >
-      <div className="mb-16">
-        <h2 className="font-[var(--font-wolf)] text-5xl md:text-6xl text-[#1c215e] mb-4">
+      <div ref={titleRef} className="mb-16">
+        <h2 className="text-5xl md:text-6xl text-[#1c215e] mb-4 opacity-0" style={{ fontFamily: 'var(--font-wolf)' }}>
           About me
         </h2>
-        <p className="text-lg text-[#1c215e]/60 max-w-2xl">
+        <p className="text-lg text-[#1c215e]/60 max-w-2xl opacity-0" style={{ fontFamily: 'var(--font-wolf)' }}>
           Hover on the cards to explore my journey
         </p>
       </div>
@@ -107,20 +134,20 @@ export default function AboutMe() {
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
                   {/* Title - shown when not hovered */}
                   <div className={`transition-all duration-500 ${isHovered ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-                    <p className="text-xs uppercase tracking-[0.3em] font-[var(--font-wolf)] text-white">
+                    <p className="text-xs uppercase tracking-[0.3em] text-white" style={{ fontFamily: 'var(--font-wolf)' }}>
                       {card.title}
                     </p>
                   </div>
 
                   {/* Description - shown when hovered */}
                   <div className={`absolute inset-0 p-8 flex flex-col justify-center transition-all duration-500 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
-                    <p className="text-xs uppercase tracking-[0.3em] text-white/80 font-[var(--font-wolf)] mb-3">
+                    <p className="text-xs uppercase tracking-[0.3em] text-white/80 mb-3" style={{ fontFamily: 'var(--font-wolf)' }}>
                       {card.title}
                     </p>
-                    <h3 className="font-[var(--font-wolf)] text-3xl text-white mb-4">
+                    <h3 className="text-3xl text-white mb-4" style={{ fontFamily: 'var(--font-wolf)' }}>
                       {card.subtitle}
                     </h3>
-                    <p className="text-base text-white/90 leading-relaxed">
+                    <p className="text-base text-white/90 leading-relaxed" style={{ fontFamily: 'var(--font-wolf)' }}>
                       {card.description}
                     </p>
                   </div>

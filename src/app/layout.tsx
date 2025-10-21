@@ -20,7 +20,7 @@ const agbalumo = Agbalumo({
 });
 
 export const metadata: Metadata = {
-  title: "Azik Studio — Designer Portfolio",
+  title: "Az1k",
   description:
     "Immersive designer portfolio showcasing projects, process, and contact paths with bold motion and storytelling.",
 };

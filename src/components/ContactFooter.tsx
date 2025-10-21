@@ -1,6 +1,7 @@
 "use client";
 
 import { animate } from "animejs";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 const socialLinks = [
@@ -79,13 +80,13 @@ export default function ContactFooter() {
           
           <div className="relative space-y-12">
             <div data-contact-item className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0] font-[var(--font-wolf)]">
+              <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
                 Let&apos;s work together
               </p>
-              <h2 className="font-[var(--font-wolf)] text-4xl md:text-5xl lg:text-6xl text-[#1c215e] max-w-3xl">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl text-[#1c215e] max-w-3xl" style={{ fontFamily: 'var(--font-wolf)' }}>
                 Ready to bring your vision to life?
               </h2>
-              <p className="text-lg text-[#1c215e]/70 max-w-2xl">
+              <p className="text-lg text-[#1c215e]/70 max-w-2xl" style={{ fontFamily: 'var(--font-wolf)' }}>
                 Whether you need branding, packaging design, or creative direction, 
                 let&apos;s create something extraordinary together.
               </p>
@@ -94,7 +95,8 @@ export default function ContactFooter() {
             <div data-contact-item className="flex flex-wrap gap-4">
               <a
                 href="mailto:hello@azik.design"
-                className="inline-flex items-center gap-3 rounded-full bg-[#5EC4F0] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#1c215e] hover:shadow-[0_8px_32px_rgba(28,33,94,0.3)] font-[var(--font-wolf)]"
+                className="inline-flex items-center gap-3 rounded-full bg-[#5EC4F0] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#1c215e] hover:shadow-[0_8px_32px_rgba(28,33,94,0.3)]"
+                style={{ fontFamily: 'var(--font-wolf)' }}
               >
                 hello@azik.design
                 <svg
@@ -110,7 +112,8 @@ export default function ContactFooter() {
               </a>
               <a
                 href="tel:+84123456789"
-                className="inline-flex items-center gap-3 rounded-full border-2 border-[#1c215e]/20 px-8 py-4 text-sm font-semibold text-[#1c215e] transition hover:border-[#5EC4F0] hover:bg-[#5EC4F0]/10 font-[var(--font-wolf)]"
+                className="inline-flex items-center gap-3 rounded-full border-2 border-[#1c215e]/20 px-8 py-4 text-sm font-semibold text-[#1c215e] transition hover:border-[#5EC4F0] hover:bg-[#5EC4F0]/10"
+                style={{ fontFamily: 'var(--font-wolf)' }}
               >
                 +84 123 456 789
               </a>
@@ -128,10 +131,10 @@ export default function ContactFooter() {
                   <div className="mb-4 text-[#1c215e]/40 transition-colors group-hover:text-[#5EC4F0]">
                     {social.icon}
                   </div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#5EC4F0] font-[var(--font-wolf)]">
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
                     {social.name}
                   </p>
-                  <p className="mt-2 text-lg text-[#1c215e] font-[var(--font-wolf)]">
+                  <p className="mt-2 text-lg text-[#1c215e]" style={{ fontFamily: 'var(--font-wolf)' }}>
                     {social.handle}
                   </p>
                 </a>
@@ -141,12 +144,28 @@ export default function ContactFooter() {
         </div>
       </section>
 
-      <footer className="relative z-10 flex flex-col gap-4 border-t-2 border-[#1c215e]/10 px-6 py-8 text-center text-xs uppercase tracking-[0.3em] text-[#1c215e]/40 md:flex-row md:items-center md:justify-between md:px-14 font-[var(--font-wolf)]">
-        <p>© {new Date().getFullYear()} Azik Studio. All rights reserved.</p>
-        <p className="text-[#1c215e]/30">
-          Designed & Developed with ❤️ in Hanoi
-        </p>
-      </footer>
+      {/* Infinite Marquee Banner */}
+      <div className="relative overflow-hidden bg-[#5EC4F0] py-4 md:py-5">
+        <div className="flex animate-marquee whitespace-nowrap items-center">
+          {[...Array(20)].map((_, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-6 mx-6"
+            >
+              <span className="text-3xl md:text-4xl text-white leading-none" style={{ fontFamily: 'var(--font-wolf)' }}>
+                Azik2k2
+              </span>
+              <Image
+                src="/assets/pattern-star.png"
+                alt="Star pattern"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain opacity-80"
+              />
+            </span>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
