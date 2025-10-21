@@ -74,71 +74,114 @@ export default function ContactFooter() {
         ref={contactRef}
         className="relative px-6 py-24 md:px-14 lg:px-24"
       >
-        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-[#1c215e]/10 bg-white shadow-[0_16px_64px_rgba(28,33,94,0.12)] px-8 py-16 md:p-20">
+        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-[#1c215e]/10 bg-white shadow-[0_16px_64px_rgba(28,33,94,0.12)]">
           <div className="absolute -left-20 top-1/2 hidden h-40 w-40 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[#5EC4F0]/20 to-[#5EC4F0]/10 blur-3xl md:block" />
           <div className="absolute -right-14 -bottom-14 h-52 w-52 rounded-full bg-gradient-to-tr from-[#1c215e]/10 to-[#5EC4F0]/20 blur-3xl" />
           
-          <div className="relative space-y-12">
-            <div data-contact-item className="space-y-6">
-              <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
-                Let&apos;s work together
-              </p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl text-[#1c215e] max-w-3xl" style={{ fontFamily: 'var(--font-wolf)' }}>
-                Ready to bring your vision to life?
-              </h2>
-              <p className="text-lg text-[#1c215e]/70 max-w-2xl" style={{ fontFamily: 'var(--font-wolf)' }}>
-                Whether you need branding, packaging design, or creative direction, 
-                let&apos;s create something extraordinary together.
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            {/* Left Panel - Contact Info */}
+            <div className="relative space-y-12 px-8 py-16 md:p-20">
+              <div data-contact-item className="space-y-6">
+                <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
+                  Let&apos;s work together
+                </p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl text-[#1c215e]" style={{ fontFamily: 'var(--font-wolf)' }}>
+                  Ready to bring your vision to life?
+                </h2>
+                <p className="text-lg text-[#1c215e]/70" style={{ fontFamily: 'var(--font-wolf)' }}>
+                  Whether you need branding, packaging design, or creative direction, 
+                  let&apos;s create something extraordinary together.
+                </p>
+              </div>
 
-            <div data-contact-item className="flex flex-wrap gap-4">
-              <a
-                href="mailto:hello@azik.design"
-                className="inline-flex items-center gap-3 rounded-full bg-[#5EC4F0] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#1c215e] hover:shadow-[0_8px_32px_rgba(28,33,94,0.3)]"
-                style={{ fontFamily: 'var(--font-wolf)' }}
-              >
-                hello@azik.design
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-5 w-5"
-                >
-                  <path d="M7 7h10v10" />
-                  <path d="M7 17 17 7" />
-                </svg>
-              </a>
-              <a
-                href="tel:+84123456789"
-                className="inline-flex items-center gap-3 rounded-full border-2 border-[#1c215e]/20 px-8 py-4 text-sm font-semibold text-[#1c215e] transition hover:border-[#5EC4F0] hover:bg-[#5EC4F0]/10"
-                style={{ fontFamily: 'var(--font-wolf)' }}
-              >
-                +84 123 456 789
-              </a>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3" data-contact-item>
-              {socialLinks.map((social) => (
+              <div data-contact-item className="flex flex-wrap gap-4">
                 <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group rounded-2xl border-2 border-[#1c215e]/10 bg-white shadow-[0_4px_16px_rgba(28,33,94,0.06)] p-6 transition hover:border-[#5EC4F0] hover:shadow-[0_8px_24px_rgba(94,196,240,0.15)]"
+                  href="mailto:hello@azik.design"
+                  className="inline-flex items-center gap-3 rounded-full bg-[#5EC4F0] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#1c215e] hover:shadow-[0_8px_32px_rgba(28,33,94,0.3)]"
+                  style={{ fontFamily: 'var(--font-wolf)' }}
                 >
-                  <div className="mb-4 text-[#1c215e]/40 transition-colors group-hover:text-[#5EC4F0]">
-                    {social.icon}
-                  </div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#5EC4F0]" style={{ fontFamily: 'var(--font-wolf)' }}>
-                    {social.name}
-                  </p>
-                  <p className="mt-2 text-lg text-[#1c215e]" style={{ fontFamily: 'var(--font-wolf)' }}>
-                    {social.handle}
-                  </p>
+                  hello@azik.design
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="h-5 w-5"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
                 </a>
-              ))}
+                <a
+                  href="tel:+84123456789"
+                  className="inline-flex items-center gap-3 rounded-full border-2 border-[#1c215e]/20 px-8 py-4 text-sm font-semibold text-[#1c215e] transition hover:border-[#5EC4F0] hover:bg-[#5EC4F0]/10"
+                  style={{ fontFamily: 'var(--font-wolf)' }}
+                >
+                  +84 123 456 789
+                </a>
+              </div>
+            </div>
+
+            {/* Right Panel - Logo */}
+            <div className="relative flex items-center justify-center" data-contact-item>
+              <div className="relative w-full h-full flex items-center justify-center p-12 md:p-16">
+                <Image
+                  src="/assets/logo.png"
+                  alt="Azik Logo"
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Social Links - Full Width */}
+          <div className="px-8 pb-16 md:px-20 md:pb-20">
+            <div className="grid gap-6 md:grid-cols-3" data-contact-item>
+              {socialLinks.map((social) => {
+                let bgClass = "";
+                let hoverBgClass = "";
+                let iconColorClass = "";
+                let borderClass = "";
+                
+                if (social.name === "Instagram") {
+                  bgClass = "bg-gradient-to-br from-[#f09433] via-[#e6683c] to-[#dc2743]";
+                  hoverBgClass = "hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888]";
+                  iconColorClass = "text-white";
+                  borderClass = "border-transparent";
+                } else if (social.name === "Behance") {
+                  bgClass = "bg-[#1769FF]";
+                  hoverBgClass = "hover:bg-[#0057FF]";
+                  iconColorClass = "text-white";
+                  borderClass = "border-transparent";
+                } else if (social.name === "X (Twitter)") {
+                  bgClass = "bg-black";
+                  hoverBgClass = "hover:bg-[#1c215e]";
+                  iconColorClass = "text-white";
+                  borderClass = "border-transparent";
+                }
+                
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group rounded-2xl border-2 ${borderClass} ${bgClass} ${hoverBgClass} shadow-[0_8px_24px_rgba(0,0,0,0.15)] p-6 transition-all hover:shadow-[0_12px_32px_rgba(0,0,0,0.25)] hover:scale-105`}
+                  >
+                    <div className={`mb-4 ${iconColorClass} transition-transform group-hover:scale-110`}>
+                      {social.icon}
+                    </div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-white/80" style={{ fontFamily: 'var(--font-wolf)' }}>
+                      {social.name}
+                    </p>
+                    <p className="mt-2 text-lg text-white font-semibold" style={{ fontFamily: 'var(--font-wolf)' }}>
+                      {social.handle}
+                    </p>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

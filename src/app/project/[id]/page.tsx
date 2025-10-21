@@ -151,11 +151,14 @@ export default function ProjectPage({ params }: { params: Promise<{ id: string }
   const handleThumbnailClick = (index: number) => {
     setSelectedImage(index);
     if (mainImageRef.current) {
-      animate(mainImageRef.current.querySelector('img'), {
-        opacity: [0.3, 1],
-        duration: 400,
-        easing: "easeOutExpo",
-      });
+      const img = mainImageRef.current.querySelector('img');
+      if (img) {
+        animate(img, {
+          opacity: [0.3, 1],
+          duration: 400,
+          easing: "easeOutExpo",
+        });
+      }
     }
   };
 
