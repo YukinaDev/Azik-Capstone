@@ -12,7 +12,6 @@ export function VideoBackground({
   poster,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const directionRef = useRef<"forward" | "backward">("forward");
 
   useEffect(() => {
     const video = videoRef.current;
@@ -24,51 +23,14 @@ export function VideoBackground({
         return video.play().catch(() => {});
       });
 
-    const playForward = () => {
-      directionRef.current = "forward";
-      video.playbackRate = 1;
-      if (video.currentTime <= 0.1) {
-        video.currentTime = 0.1;
-      }
-      ensurePlay();
-    };
-
-    const playBackward = () => {
-      if (!Number.isFinite(video.duration) || video.duration === 0) {
-        playForward();
-        return;
-      }
-      directionRef.current = "backward";
-      video.playbackRate = -1;
-      if (video.currentTime >= video.duration - 0.1) {
-        video.currentTime = Math.max(video.duration - 0.1, 0);
-      }
-      ensurePlay();
-    };
-
-    const handleEnded = () => {
-      playBackward();
-    };
-
-    const handleTimeUpdate = () => {
-      if (directionRef.current === "backward" && video.currentTime <= 0.15) {
-        playForward();
-      }
-    };
-
-    video.loop = false;
+    video.loop = true;
     video.muted = true;
     video.playsInline = true;
     video.playbackRate = 1;
-    playForward();
-
-    video.addEventListener("ended", handleEnded);
-    video.addEventListener("timeupdate", handleTimeUpdate);
+    ensurePlay();
 
     return () => {
       video.pause();
-      video.removeEventListener("ended", handleEnded);
-      video.removeEventListener("timeupdate", handleTimeUpdate);
     };
   }, []);
 
