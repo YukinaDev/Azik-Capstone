@@ -76,7 +76,7 @@ export default function Header() {
       <header className="fixed top-6 left-0 right-0 z-30 flex items-center justify-center px-6">
         <Link href="#home" className="absolute left-6 top-0">
           <Image
-            src="/assets/logo2.png"
+            src={activeSection === "home" ? "/assets/logo2.png" : "/assets/logo.png"}
             alt="Azik logo"
             width={56}
             height={56}

@@ -12,7 +12,6 @@ const aboutCards = [
     description:
       "My name is Vũ Đức Trung, but you can call me Azik. I create visual stories that blend creativity with strategic thinking.",
     image: "/assets/myavatar2.png",
-    overlay: "bg-gradient-to-t from-[#5EC4F0]/70 via-[#5EC4F0]/30 to-transparent",
   },
   {
     id: "location",
@@ -21,7 +20,6 @@ const aboutCards = [
     description:
       "Hà Nội - the vibrant capital of Vietnam, where thousand-year-old heritage meets modern creative energy. This city inspires my work with its perfect balance of tradition and innovation.",
     image: "/assets/t11-2.jpg",
-    overlay: "bg-gradient-to-t from-[#1c215e]/50 via-[#1c215e]/15 to-transparent",
   },
   {
     id: "about",
@@ -30,12 +28,11 @@ const aboutCards = [
     description:
       "A multidisciplinary designer passionate about crafting meaningful visual experiences. I specialize in branding, packaging design, and creative direction.",
     image: "/assets/myavatar3.png",
-    overlay: "bg-gradient-to-t from-purple-600/60 via-purple-600/20 to-transparent",
   },
 ];
 
 export default function AboutMe() {
-  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -65,14 +62,6 @@ export default function AboutMe() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCardHover = (index: number, isHovering: boolean) => {
-    setFlippedCards((prev) =>
-      isHovering
-        ? prev.includes(index) ? prev : [...prev, index]
-        : prev.filter((i) => i !== index)
-    );
-  };
-
   return (
     <section
       id="about"
@@ -84,7 +73,7 @@ export default function AboutMe() {
           About me
         </h2>
         <p className="text-lg text-[#1c215e]/60 max-w-2xl">
-          Hover on the cards to flip and explore my journey
+          Hover on the cards to explore my journey
         </p>
       </div>
 
@@ -93,65 +82,45 @@ export default function AboutMe() {
         className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
       >
         {aboutCards.map((card, index) => {
-          const isFlipped = flippedCards.includes(index);
+          const isHovered = hoveredCard === index;
 
           return (
             <div
               key={card.id}
               data-card
-              className="relative h-[500px] cursor-pointer opacity-0"
-              style={{ perspective: "1000px" }}
-              onMouseEnter={() => handleCardHover(index, true)}
-              onMouseLeave={() => handleCardHover(index, false)}
+              className="relative h-[500px] cursor-pointer opacity-0 group"
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              <div
-                className={`relative w-full h-full transition-transform duration-700 transform-3d`}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                }}
-              >
-                {/* Front of card */}
-                <div
-                  className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden backface-hidden"
-                  style={{ backfaceVisibility: "hidden" }}
-                >
-                  <div className="relative w-full h-full bg-white border-2 border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-[#5EC4F0]/50 hover:scale-105 transition-all duration-300 rounded-3xl overflow-hidden">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                    />
-                    
-                    {/* Overlay */}
-                    <div className={`absolute inset-0 ${card.overlay}`} />
-                    
-                    {/* Card label */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <p className="text-xs uppercase tracking-[0.3em] font-[var(--font-wolf)] text-white">
-                        {card.title}
-                      </p>
-                    </div>
+              <div className={`relative w-full h-full bg-white border-2 border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-[#5EC4F0]/50 transition-all duration-500 rounded-3xl overflow-hidden ${isHovered ? 'scale-105' : 'scale-100'}`}>
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                />
+                
+                {/* Dark overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-60'}`} />
+                
+                {/* Text content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  {/* Title - shown when not hovered */}
+                  <div className={`transition-all duration-500 ${isHovered ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                    <p className="text-xs uppercase tracking-[0.3em] font-[var(--font-wolf)] text-white">
+                      {card.title}
+                    </p>
                   </div>
-                </div>
 
-                {/* Back of card */}
-                <div
-                  className="absolute inset-0 w-full h-full rounded-3xl backface-hidden"
-                  style={{
-                    backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
-                  }}
-                >
-                  <div className="relative w-full h-full bg-[#1c125e] border-2 border-[#1c125e] shadow-[0_8px_32px_rgba(0,0,0,0.15)] rounded-3xl overflow-hidden p-8 flex flex-col justify-center">
+                  {/* Description - shown when hovered */}
+                  <div className={`absolute inset-0 p-8 flex flex-col justify-center transition-all duration-500 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
                     <p className="text-xs uppercase tracking-[0.3em] text-white/80 font-[var(--font-wolf)] mb-3">
                       {card.title}
                     </p>
-                    <h3 className="font-[var(--font-wolf)] text-4xl text-white mb-6">
+                    <h3 className="font-[var(--font-wolf)] text-3xl text-white mb-4">
                       {card.subtitle}
                     </h3>
-                    <p className="text-lg text-white/90 leading-relaxed">
+                    <p className="text-base text-white/90 leading-relaxed">
                       {card.description}
                     </p>
                   </div>
