@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Agbalumo } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +12,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const agbalumo = localFont({
-  src: "../../public/assets/fonts/Agbalumo-Regular.ttf",
-  variable: "--font-display",
+const agbalumo = Agbalumo({
+  variable: "--font-wolf",
+  subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
