@@ -7,19 +7,19 @@ import { useEffect, useRef, useState } from "react";
 const slides = [
   {
     id: 1,
-    image: "/assets/projects/pj1/mockup 1.jpg",
+    image: "/assets/projects/pj1/mockup 2.jpg",
     title: "MONA Scented Candles",
     category: "Branding / Packaging",
   },
   {
     id: 2,
-    image: "/assets/projects/pj2/poster mockup.jpg",
+    image: "/assets/projects/pj2/mockup 2.jpg",
     title: "Modern Poster Design",
     category: "Art Direction",
   },
   {
     id: 3,
-    image: "/assets/projects/pj3/mockup 1.jpg",
+    image: "/assets/projects/pj3/mockup 11.jpg",
     title: "Creative Campaign",
     category: "Visual Identity",
   },
@@ -63,7 +63,7 @@ export default function AutoSlider() {
   };
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
+    <section id="home" className="relative h-[calc(100vh+5rem)] overflow-hidden -mt-20">
       <div ref={slideRef} className="relative h-full w-full">
         {slides.map((slide, index) => (
           <div
@@ -79,15 +79,15 @@ export default function AutoSlider() {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1c215e] via-[#1c215e]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1c215e]/90 via-[#1c215e]/50 to-transparent" />
             
             {index === currentIndex && (
               <div className="absolute bottom-24 left-0 right-0 px-6 md:px-14 lg:px-24">
                 <div className="space-y-4" data-slide-content>
-                  <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]/80 font-[var(--font-wolf)]">
+                  <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0] font-[var(--font-wolf)]">
                     {slide.category}
                   </p>
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-wolf)] text-white drop-shadow-[0_0_20px_rgba(94,196,240,0.3)]">
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-wolf)] text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
                     {slide.title}
                   </h2>
                 </div>
@@ -105,7 +105,7 @@ export default function AutoSlider() {
             className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
                 ? "w-12 bg-[#5EC4F0] shadow-[0_0_10px_rgba(94,196,240,0.8)]"
-                : "w-2 bg-white/40 hover:bg-[#5EC4F0]/60"
+                : "w-2 bg-[#1c215e]/30 hover:bg-[#5EC4F0]/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

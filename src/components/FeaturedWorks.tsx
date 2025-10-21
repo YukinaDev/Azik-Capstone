@@ -64,10 +64,10 @@ export default function FeaturedWorks() {
   return (
     <section id="projects" className="px-6 py-24 md:px-14 lg:px-24">
       <div className="mb-16 space-y-4">
-        <h2 className="font-[var(--font-wolf)] text-5xl md:text-6xl text-white">
+        <h2 className="font-[var(--font-wolf)] text-5xl md:text-6xl text-[#1c215e]">
           Featured Works
         </h2>
-        <p className="text-lg text-white/60 max-w-2xl">
+        <p className="text-lg text-[#1c215e]/60 max-w-2xl">
           A curated selection of brand identities, packaging designs, and creative campaigns 
           crafted with attention to detail and strategic thinking.
         </p>
@@ -81,7 +81,7 @@ export default function FeaturedWorks() {
             ref={(node) => {
               projectRefs.current[index] = node;
             }}
-            className="group relative overflow-hidden rounded-[2rem] border border-[#5EC4F0]/20 bg-[#1c215e]/40 transition-all duration-500 hover:border-[#5EC4F0] hover:scale-105 hover:shadow-[0_0_40px_rgba(94,196,240,0.3)]"
+            className="group relative overflow-hidden rounded-[2rem] border-2 border-[#1c215e]/10 bg-white shadow-[0_8px_32px_rgba(28,33,94,0.08)] transition-all duration-500 hover:border-[#5EC4F0] hover:scale-105 hover:shadow-[0_16px_48px_rgba(94,196,240,0.2)]"
             style={{ opacity: 0 }}
           >
             <div className="aspect-[3/4] relative overflow-hidden">
@@ -91,7 +91,7 @@ export default function FeaturedWorks() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1c215e] via-[#1c215e]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
               <div
                 className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-br ${project.gradient} mix-blend-screen`}
               />
@@ -102,7 +102,7 @@ export default function FeaturedWorks() {
                 <span>{project.category}</span>
                 <span>{project.year}</span>
               </div>
-              <h3 className="font-[var(--font-wolf)] text-2xl text-white">
+              <h3 className="font-[var(--font-wolf)] text-2xl text-[#1c215e]">
                 {project.title}
               </h3>
               <div className="flex items-center gap-2 text-[#5EC4F0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
