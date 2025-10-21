@@ -12,7 +12,7 @@ const projects = [
     category: "Branding / Packaging",
     year: "2021",
     preview: "/assets/projects/pj1/mockup 1.jpg",
-    gradient: "from-amber-400 via-orange-500 to-rose-500",
+    gradient: "from-[#5EC4F0] via-[#7DD3F4] to-[#ffffff]",
   },
   {
     id: "pj2",
@@ -20,7 +20,7 @@ const projects = [
     category: "Art Direction",
     year: "2022",
     preview: "/assets/projects/pj2/poster mockup.jpg",
-    gradient: "from-lime-400 via-cyan-400 to-blue-500",
+    gradient: "from-[#1c215e] via-[#3d4489] to-[#5EC4F0]",
   },
   {
     id: "pj3",
@@ -28,7 +28,7 @@ const projects = [
     category: "Visual Identity",
     year: "2023",
     preview: "/assets/projects/pj3/mockup 1.jpg",
-    gradient: "from-fuchsia-500 via-purple-500 to-sky-400",
+    gradient: "from-[#5EC4F0] via-[#8B5CF6] to-[#1c215e]",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function FeaturedWorks() {
             ref={(node) => {
               projectRefs.current[index] = node;
             }}
-            className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition-all duration-500 hover:border-white/30 hover:scale-105"
+            className="group relative overflow-hidden rounded-[2rem] border border-[#5EC4F0]/20 bg-[#1c215e]/40 transition-all duration-500 hover:border-[#5EC4F0] hover:scale-105 hover:shadow-[0_0_40px_rgba(94,196,240,0.3)]"
             style={{ opacity: 0 }}
           >
             <div className="aspect-[3/4] relative overflow-hidden">
@@ -91,21 +91,21 @@ export default function FeaturedWorks() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1c215e] via-[#1c215e]/60 to-transparent" />
               <div
                 className={`absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 bg-gradient-to-br ${project.gradient} mix-blend-screen`}
               />
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3">
-              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/60 font-[var(--font-wolf)]">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[#5EC4F0]/70 font-[var(--font-wolf)]">
                 <span>{project.category}</span>
                 <span>{project.year}</span>
               </div>
               <h3 className="font-[var(--font-wolf)] text-2xl text-white">
                 {project.title}
               </h3>
-              <div className="flex items-center gap-2 text-lime-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="flex items-center gap-2 text-[#5EC4F0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <span className="text-sm uppercase tracking-[0.2em] font-[var(--font-wolf)]">
                   View Project
                 </span>

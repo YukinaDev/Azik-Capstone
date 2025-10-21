@@ -33,7 +33,7 @@ export default function AutoSlider() {
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 2500);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -58,7 +58,7 @@ export default function AutoSlider() {
       clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % slides.length);
-      }, 4000);
+      }, 2500);
     }
   };
 
@@ -79,15 +79,15 @@ export default function AutoSlider() {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1c215e] via-[#1c215e]/60 to-transparent" />
             
             {index === currentIndex && (
               <div className="absolute bottom-24 left-0 right-0 px-6 md:px-14 lg:px-24">
                 <div className="space-y-4" data-slide-content>
-                  <p className="text-xs uppercase tracking-[0.4em] text-white/60 font-[var(--font-wolf)]">
+                  <p className="text-xs uppercase tracking-[0.4em] text-[#5EC4F0]/80 font-[var(--font-wolf)]">
                     {slide.category}
                   </p>
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-wolf)] text-white">
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-[var(--font-wolf)] text-white drop-shadow-[0_0_20px_rgba(94,196,240,0.3)]">
                     {slide.title}
                   </h2>
                 </div>
@@ -104,8 +104,8 @@ export default function AutoSlider() {
             onClick={() => goToSlide(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "w-12 bg-lime-300"
-                : "w-2 bg-white/40 hover:bg-white/60"
+                ? "w-12 bg-[#5EC4F0] shadow-[0_0_10px_rgba(94,196,240,0.8)]"
+                : "w-2 bg-white/40 hover:bg-[#5EC4F0]/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
