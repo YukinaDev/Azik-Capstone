@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import type { SVGProps } from "react";
+import { VideoBackground } from "./components/VideoBackground";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -32,7 +33,7 @@ const featuredProjects = [
     category: "Brand System",
     summary:
       "Chromatic visual identity for an immersive art festival, balancing expressive gradients with functional grids.",
-    palette: "from-lime-400 via-cyan-400 to-blue-500",
+    palette: "from-[#0e7fa8]/80 via-[#12bcd0]/75 to-[#5de3d9]/70",
     tags: ["Branding", "Motion Kit", "Design Systems"],
   },
   {
@@ -40,7 +41,7 @@ const featuredProjects = [
     category: "Product Vision",
     summary:
       "Conceptual control hub for smart living, built around fluid motion cues and tactile spatial layout.",
-    palette: "from-fuchsia-500 via-purple-500 to-sky-400",
+    palette: "from-[#0c446d]/85 via-[#176c97]/75 to-[#2bb1d0]/70",
     tags: ["UI/UX", "Prototype", "Research"],
   },
   {
@@ -48,7 +49,7 @@ const featuredProjects = [
     category: "Art Direction",
     summary:
       "Digital launch for an audio startup with responsive typography, generative shapes, and layered storytelling.",
-    palette: "from-amber-400 via-orange-500 to-rose-500",
+    palette: "from-[#084255]/85 via-[#0e6282]/75 to-[#1db1c2]/70",
     tags: ["Creative Direction", "3D", "Animation"],
   },
   {
@@ -56,7 +57,7 @@ const featuredProjects = [
     category: "Experience Design",
     summary:
       "Collaborative workspace rethink featuring modular cards, motion-mapped transitions, and tactile feedback.",
-    palette: "from-emerald-400 via-teal-400 to-cyan-500",
+    palette: "from-[#155b7b]/85 via-[#1a8297]/75 to-[#43c6c7]/70",
     tags: ["Experience", "Strategy", "Motion"],
   },
 ];
@@ -196,22 +197,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-neutral-950">
-      <div className="pointer-events-none absolute inset-0 opacity-60">
-        <Image
-          src="/assets/pattern.png"
-          alt="Background pattern"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-lime-400/20 via-transparent to-sky-500/20 mix-blend-screen" />
+    <div className="relative flex min-h-screen flex-col overflow-hidden text-white">
+      <VideoBackground />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#041a2a]/70 via-transparent to-[#01060d]/90" />
 
       <header
         ref={navRef}
-        className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-neutral-950/70 px-6 py-6 backdrop-blur-xl md:px-14"
+        className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-[#041627]/70 px-6 py-6 backdrop-blur-2xl md:px-14"
       >
         <Link
           href="#home"
@@ -246,7 +238,7 @@ export default function Home() {
         </nav>
         <a
           href="#contact"
-          className="group flex items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-xs uppercase tracking-[0.2em] text-white/80 transition hover:border-lime-200/70 hover:text-white"
+          className="group flex items-center gap-2 rounded-full border border-teal-300/40 px-5 py-2 text-xs uppercase tracking-[0.2em] text-teal-200 transition hover:border-teal-200/80 hover:text-white"
           data-nav-item
         >
           Contact
@@ -276,7 +268,7 @@ export default function Home() {
                 Kinetic storytelling for brands that move faster than trends.
               </h1>
               <p
-                className="max-w-xl text-lg text-white/70 md:text-xl"
+                className="max-w-xl text-lg text-white/75 md:text-xl"
                 data-animate
               >
                 I craft daring digital experiences where typography, motion, and
@@ -289,12 +281,12 @@ export default function Home() {
               >
                 <a
                   href="#projects"
-                  className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-lime-300 to-cyan-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition hover:shadow-[0_0_30px_rgba(148,255,255,0.55)]"
+                  className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-300 via-cyan-300 to-sky-400 px-6 py-3 text-sm font-semibold text-[#022433] transition hover:shadow-[0_0_35px_rgba(64,206,255,0.45)]"
                 >
                   View featured work
                   <ArrowUpRightIcon className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-1" />
                 </a>
-                <div className="flex items-center gap-6 text-sm uppercase tracking-[0.2em] text-white/50">
+                <div className="flex items-center gap-6 text-sm uppercase tracking-[0.2em] text-white/60">
                   <div className="flex items-center gap-2">
                     <ChevronLeftIcon className="h-4 w-4" />
                     Previous
@@ -352,7 +344,7 @@ export default function Home() {
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-lime-200 transition hover:text-white"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-teal-200 transition hover:text-white"
               >
                 Book a collaboration call
                 <ArrowUpRightIcon className="h-4 w-4" />
@@ -362,15 +354,15 @@ export default function Home() {
               {infoHighlights.map((panel, index) => (
                 <div
                   key={panel.title}
-                  ref={(node) => {
+                  ref={(node: HTMLDivElement | null) => {
                     infoRefs.current[index] = node;
                   }}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-8 transition hover:border-lime-200/50 hover:bg-white/10"
+                  className="rounded-3xl border border-teal-300/15 bg-white/5 p-8 transition hover:border-teal-200/60 hover:bg-cyan-200/10"
                 >
                   <h3 className="font-[var(--font-display)] text-2xl text-white">
                     {panel.title}
                   </h3>
-                  <p className="mt-4 text-sm text-white/70">
+                  <p className="mt-4 text-sm text-white/80">
                     {panel.description}
                   </p>
                 </div>
@@ -393,7 +385,7 @@ export default function Home() {
             </div>
             <Link
               href="#contact"
-              className="inline-flex items-center gap-3 rounded-full border border-white/20 px-5 py-3 text-xs uppercase tracking-[0.25em] text-white/70 transition hover:border-lime-200/60 hover:text-white"
+              className="inline-flex items-center gap-3 rounded-full border border-teal-200/40 px-5 py-3 text-xs uppercase tracking-[0.25em] text-white/70 transition hover:border-teal-100/70 hover:text-teal-100"
             >
               Request full portfolio
               <ArrowUpRightIcon className="h-4 w-4" />
@@ -404,10 +396,10 @@ export default function Home() {
             {featuredProjects.map((project, index) => (
               <article
                 key={project.title}
-                ref={(node) => {
+                ref={(node: HTMLDivElement | null) => {
                   projectRefs.current[index] = node;
                 }}
-                className="group relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/5 p-8 transition hover:border-white/40 hover:bg-white/10"
+                className="group relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-[#051422]/60 p-8 transition hover:border-teal-100/40 hover:bg-[#062036]/80"
               >
                 <div
                   className={`absolute inset-0 opacity-30 blur-3xl transition duration-700 group-hover:opacity-60 group-hover:blur-2xl bg-gradient-to-br ${project.palette}`}
@@ -442,9 +434,9 @@ export default function Home() {
           ref={contactRef}
           className="relative px-6 pb-28 md:px-14 lg:px-24"
         >
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 px-8 py-12 md:p-16">
-            <div className="absolute -left-20 top-1/2 hidden h-40 w-40 -translate-y-1/2 rounded-full bg-gradient-to-tr from-lime-300/40 to-cyan-400/30 blur-3xl md:block" />
-            <div className="absolute -right-14 -bottom-14 h-52 w-52 rounded-full bg-gradient-to-tr from-purple-500/30 to-sky-400/20 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-teal-200/30 bg-[#062238]/85 px-8 py-12 md:p-16">
+            <div className="absolute -left-20 top-1/2 hidden h-40 w-40 -translate-y-1/2 rounded-full bg-gradient-to-tr from-teal-300/35 to-cyan-300/25 blur-3xl md:block" />
+            <div className="absolute -right-14 -bottom-14 h-52 w-52 rounded-full bg-gradient-to-tr from-sky-400/25 to-emerald-300/20 blur-3xl" />
             <div className="relative space-y-12">
               <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                 <div>
@@ -457,7 +449,7 @@ export default function Home() {
                 </div>
                 <a
                   href="mailto:hello@azik.design"
-                  className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-lime-200"
+                  className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-teal-300 via-cyan-300 to-sky-400 px-6 py-3 text-sm font-semibold text-[#022433] transition hover:shadow-[0_0_30px_rgba(64,206,255,0.45)]"
                 >
                   hello@azik.design
                   <ArrowUpRightIcon className="h-5 w-5" />
@@ -471,7 +463,7 @@ export default function Home() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group rounded-2xl border border-white/15 bg-white/5 p-6 transition hover:border-lime-200/50 hover:bg-white/10"
+                    className="group rounded-2xl border border-teal-200/25 bg-white/5 p-6 transition hover:border-teal-100/50 hover:bg-teal-100/10"
                   >
                     <p className="text-xs uppercase tracking-[0.3em] text-white/60">
                       {social.label}
