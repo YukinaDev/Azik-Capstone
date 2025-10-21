@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Agbalumo } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,15 +12,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const agbalumo = localFont({
-  src: "../../public/assets/fonts/Agbalumo-Regular.ttf",
-  variable: "--font-display",
+const agbalumo = Agbalumo({
+  variable: "--font-wolf",
+  subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Azik Studio — Designer Portfolio",
+  title: "Az1k",
   description:
     "Immersive designer portfolio showcasing projects, process, and contact paths with bold motion and storytelling.",
 };
@@ -34,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${agbalumo.variable} antialiased bg-neutral-950 text-neutral-100`}
+        className={`${geistSans.variable} ${geistMono.variable} ${agbalumo.variable} antialiased`}
       >
         {children}
       </body>
