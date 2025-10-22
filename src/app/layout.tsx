@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Agbalumo } from "next/font/google";
+import { Geist, Geist_Mono, Agbalumo, Roboto } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +19,13 @@ const agbalumo = Agbalumo({
   display: "swap",
 });
 
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Az1k",
   description:
@@ -33,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${agbalumo.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${agbalumo.variable} ${roboto.variable} antialiased`}
       >
         {children}
       </body>

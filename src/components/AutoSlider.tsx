@@ -8,20 +8,20 @@ const slides = [
   {
     id: 1,
     image: "/assets/projects/pj1/mockup 2.jpg",
-    title: "MONA Scented Candles",
-    category: "Branding / Packaging",
+    title: "Save the sea to see your future",
+    category: "Individual Project",
   },
   {
     id: 2,
     image: "/assets/projects/pj2/mockup 2.jpg",
-    title: "Modern Poster Design",
-    category: "Art Direction",
+    title: "Z & Space",
+    category: "UI/UX Design",
   },
   {
     id: 3,
     image: "/assets/projects/pj3/mockup 11.jpg",
-    title: "Creative Campaign",
-    category: "Visual Identity",
+    title: "Baby Love",
+    category: "Branding & Identity",
   },
 ];
 
