@@ -9,24 +9,38 @@ const aboutCards = [
     id: "welcome",
     title: "Welcome!",
     subtitle: "I'm a Graphic Designer",
-    description:
-      "My name is Vũ Đức Trung, but you can call me Azik. I create visual stories that blend creativity with strategic thinking.",
+    description: "I am a multidisciplinary designer driven by a deep passion for crafting meaningful visual experiences. My work goes beyond aesthetics; it's about solving communication and business challenges through thoughtful design.",
+    specialties: [
+      {
+        title: "Branding",
+        description: "Defining the core identity, from strategy to the visual system, to help brands tell their story consistently and memorably."
+      },
+      {
+        title: "Packaging Design",
+        description: "Transforming packaging into a critical touchpoint where creativity meets functionality, ultimately driving purchase decisions and elevating the product experience."
+      },
+      {
+        title: "Creative Direction",
+        description: "Leading the artistic vision and strategic direction for projects, ensuring all visual elements are cohesive and effectively communicate the overarching goal."
+      }
+    ],
     image: "/assets/myavatar3.png",
   },
   {
     id: "location",
-    title: "Based in Hanoi",
+    title: "Lived in Hanoi",
     subtitle: "Hanoi, Vietnam",
     description:
-      "Hà Nội - the vibrant capital of Vietnam, where thousand-year-old heritage meets modern creative energy. This city inspires my work with its perfect balance of tradition and innovation.",
+      "This city is my biggest inspiration, offering a perfect balance between tradition and innovation. It is this unique blend that has shaped my working style: always seeking to combine the sustainable, refined values ​​of the past with the pioneering and efficient spirit of the present",
     image: "/assets/t11-2.jpg",
   },
   {
     id: "about",
-    title: "About Azik",
+    title: "About Me",
     subtitle: "Designer & Creative",
     description:
-      "A multidisciplinary designer passionate about crafting meaningful visual experiences. I specialize in branding, packaging design, and creative direction.",
+      "My name is Vu Duc Trung, but you can call me Azik.\n\n" +
+      "My role is a visual storyteller.I specialize in creating impactful visual content, from graphics to videos.My approach is based on the perfect balance: bringing unlimited creativity within the framework of strategic thinking, ensuring that each piece is not only engaging but also serves a clear and effective communication goal.",
     image: "/assets/myavatar2.png",
   },
 ];
@@ -118,9 +132,9 @@ export default function AboutMe() {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-12 items-center max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-32 items-center max-w-7xl mx-auto">
         {/* Stacked Cards */}
-        <div 
+        <div
           ref={cardsContainerRef}
           className="relative w-full lg:w-1/2 h-[680px] flex items-center justify-center"
         >
@@ -146,11 +160,10 @@ export default function AboutMe() {
                 }}
                 onClick={() => setActiveCardIndex(index)}
               >
-                <div className={`relative w-full h-full bg-white rounded-3xl overflow-hidden ${
-                  isActive 
-                    ? 'shadow-[0_0_60px_rgba(94,196,240,0.6)] border-2 border-transparent' 
-                    : 'border-2 border-[#1c215e]/10 shadow-[0_12px_48px_rgba(28,33,94,0.2)]'
-                }`}>
+                <div className={`relative w-full h-full bg-white rounded-3xl overflow-hidden ${isActive
+                  ? 'shadow-[0_0_60px_rgba(94,196,240,0.6)] border-2 border-transparent'
+                  : 'border-2 border-[#1c215e]/10 shadow-[0_12px_48px_rgba(28,33,94,0.2)]'
+                  }`}>
                   {isActive && (
                     <div className="absolute inset-0 rounded-3xl p-[2px] animate-spin-slow" style={{
                       background: 'conic-gradient(from 0deg, #5EC4F0, #FF6B9D, #FFC837, #5EC4F0)',
@@ -167,7 +180,7 @@ export default function AboutMe() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  
+
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <p className="text-xs uppercase tracking-[0.3em] text-white/90 mb-2" style={{ fontFamily: 'var(--font-wolf)' }}>
                       {card.title}
@@ -192,17 +205,35 @@ export default function AboutMe() {
               {aboutCards[activeCardIndex].description}
             </p>
 
+            {/* Specialties for Welcome card */}
+            {activeCardIndex === 0 && aboutCards[0].specialties && (
+              <div className="space-y-4 pt-2">
+                <p className="text-base font-semibold text-[#1c215e]/80" style={{ fontFamily: 'var(--font-wolf)' }}>
+                  I specialize in the following core areas:
+                </p>
+                {aboutCards[0].specialties.map((specialty, index) => (
+                  <div key={index} className="pl-4 border-l-2 border-[#5EC4F0]/30">
+                    <h4 className="text-base font-semibold text-[#5EC4F0] mb-1" style={{ fontFamily: 'var(--font-wolf)' }}>
+                      {specialty.title}
+                    </h4>
+                    <p className="text-sm text-[#1c215e]/70 leading-relaxed" style={{ fontFamily: 'var(--font-roboto)' }}>
+                      {specialty.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Card indicators */}
             <div className="flex gap-2 pt-4">
               {aboutCards.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveCardIndex(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === activeCardIndex 
-                      ? 'w-12 bg-[#5EC4F0]' 
-                      : 'w-6 bg-[#1c215e]/20 hover:bg-[#1c215e]/40'
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${index === activeCardIndex
+                    ? 'w-12 bg-[#5EC4F0]'
+                    : 'w-6 bg-[#1c215e]/20 hover:bg-[#1c215e]/40'
+                    }`}
                   aria-label={`Go to card ${index + 1}`}
                 />
               ))}

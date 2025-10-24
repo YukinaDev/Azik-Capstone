@@ -8,27 +8,35 @@ import { useEffect, useRef } from "react";
 const projects = [
   {
     id: "pj1",
-    title: "MONA Scented Candles",
-    category: "Branding / Packaging",
-    year: "2021",
+    title: "Save the sea to see your future",
+    category: "Individual Project",
+    year: "2022",
     preview: "/assets/projects/pj1/mocup 5.jpg",
     gradient: "from-[#C49A6C] via-[#D4B896] to-[#E8D5BF]",
   },
   {
     id: "pj2",
-    title: "Modern Poster Series",
-    category: "Art Direction",
-    year: "2022",
+    title: "Z & Space",
+    category: "UI/UX Design",
+    year: "2023",
     preview: "/assets/projects/pj2/mockup 3.jpg",
     gradient: "from-[#2A3875] via-[#4A5FA0] to-[#6B8DD6]",
   },
   {
     id: "pj3",
-    title: "Creative Campaign",
-    category: "Visual Identity",
-    year: "2023",
+    title: "Baby Love",
+    category: "Branding & Identity",
+    year: "2024",
     preview: "/assets/projects/pj3/mockup 10.jpg",
     gradient: "from-[#D4A5A0] via-[#E8C5C0] to-[#F5E0DC]",
+  },
+  {
+    id: "pj4",
+    title: "Fashion Collection",
+    category: "Product Design",
+    year: "2024",
+    preview: "/assets/projects/pj4/Mockup 4.jpg",
+    gradient: "from-[#1a1a1a] via-[#4a4a4a] to-[#7a7a7a]",
   },
 ];
 
@@ -101,7 +109,7 @@ export default function FeaturedWorks() {
         </p>
       </div>
 
-      <div ref={containerRef} className="grid gap-8 md:grid-cols-3">
+      <div ref={containerRef} className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         {projects.map((project, index) => (
           <Link
             key={project.id}

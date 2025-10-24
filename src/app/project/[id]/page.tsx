@@ -78,6 +78,28 @@ const projectsData = {
       "/assets/projects/pj3/mockup.jpg",
     ],
   },
+  pj4: {
+    id: "pj4",
+    title: "Fashion Collection",
+    category: "Product Design / Fashion",
+    year: "2024",
+    client: "Fashion Brand",
+    description:
+      "A contemporary fashion collection featuring modern apparel designs. This project showcases clean aesthetics and minimalist approach to fashion design, emphasizing quality materials and timeless style.",
+    challenge:
+      "Create a fashion collection that balances modern trends with classic elegance, appealing to style-conscious consumers.",
+    solution:
+      "We developed a cohesive collection with versatile pieces that can be mixed and matched, featuring a monochromatic palette and premium materials for a sophisticated look.",
+    tags: ["Fashion Design", "Product Photography", "Branding", "Apparel"],
+    gradient: "from-[#1a1a1a] via-[#4a4a4a] to-[#7a7a7a]",
+    images: [
+      "/assets/projects/pj4/Mockup 1.png",
+      "/assets/projects/pj4/Mockup 3.png",
+      "/assets/projects/pj4/Mockup 4.jpg",
+      "/assets/projects/pj4/White Shirt.png",
+      "/assets/projects/pj4/Black Shirt.png",
+    ],
+  },
 };
 
 export default function ProjectPage({ params }: { params: Promise<{ id: string }> }) {

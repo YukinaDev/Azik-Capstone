@@ -13,37 +13,9 @@ const navItems = [
 ];
 
 export default function Header() {
-  const navRef = useRef<HTMLElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const [activeSection, setActiveSection] = useState("home");
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isScrolled && navRef.current) {
-      const navTargets = Array.from(
-        navRef.current?.querySelectorAll<HTMLElement>("[data-nav-item]") ?? [],
-      );
-
-      if (navTargets.length) {
-        set(navTargets, { opacity: 0, scale: 0.9 });
-        animate(navTargets, {
-          opacity: [0, 1],
-          scale: [0.9, 1],
-          delay: stagger(50),
-          duration: 400,
-          easing: "easeOutExpo",
-        });
-      }
-    }
-  }, [isScrolled]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const observerOptions = {
@@ -71,10 +43,29 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen && menuRef.current) {
+      const menuItems = Array.from(
+        menuRef.current?.querySelectorAll<HTMLElement>("[data-menu-item]") ?? [],
+      );
+
+      if (menuItems.length) {
+        set(menuItems, { opacity: 0, translateX: 20 });
+        animate(menuItems, {
+          opacity: [0, 1],
+          translateX: [20, 0],
+          delay: stagger(50),
+          duration: 400,
+          easing: "easeOutExpo",
+        });
+      }
+    }
+  }, [isMenuOpen]);
+
   return (
     <>
-      <header className="fixed top-6 left-0 right-0 z-30 flex items-center justify-center px-6">
-        <Link href="#home" className="absolute left-6 top-0">
+      <header className="fixed top-6 left-0 right-0 z-30 flex items-center justify-between px-6">
+        <Link href="#home" className="z-40">
           <Image
             src={activeSection === "home" ? "/assets/logo2.png" : "/assets/logo.png"}
             alt="Azik logo"
@@ -84,38 +75,62 @@ export default function Header() {
           />
         </Link>
 
-        <nav
-          ref={navRef}
-          className={`transition-all duration-500 ${
-            isScrolled
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-32 opacity-0 pointer-events-none"
-          }`}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="z-40 transition duration-500 hover:scale-110"
         >
-          <div className="flex items-center gap-2 rounded-full border border-[#1c215e]/10 bg-white/95 backdrop-blur-xl px-3 py-3 shadow-[0_8px_32px_rgba(28,33,94,0.12)]">
-            {navItems.map((item) => {
-              const sectionId = item.href.replace("#", "");
-              const isActive = activeSection === sectionId;
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  data-nav-item
-                  style={{ fontFamily: 'var(--font-wolf)' }}
-                  className={`relative px-6 py-2.5 text-sm font-medium transition-all duration-300 rounded-full ${
-                    isActive
-                      ? "bg-[#5EC4F0] text-white shadow-[0_4px_16px_rgba(94,196,240,0.4)]"
-                      : "text-[#1c215e]/70 hover:text-[#1c215e] hover:bg-[#5EC4F0]/10"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
+          <Image
+            src={activeSection === "home" && !isMenuOpen ? "/assets/pattern-smile.png" : "/assets/pattern-smile-2.png"}
+            alt="Menu icon"
+            width={56}
+            height={56}
+            className="h-14 w-14 object-contain drop-shadow-lg"
+          />
+        </button>
       </header>
+
+      {/* Vertical Dropdown Menu */}
+      <div
+        className={`fixed top-0 right-0 z-20 h-screen w-64 bg-white/95 backdrop-blur-xl shadow-[-8px_0_32px_rgba(28,33,94,0.12)] rounded-l-3xl transition-transform duration-500 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div ref={menuRef} className="flex flex-col pt-32 px-8">
+          {navItems.map((item) => {
+            const sectionId = item.href.replace("#", "");
+            const isActive = activeSection === sectionId;
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                data-menu-item
+                style={{ fontFamily: 'var(--font-wolf)' }}
+                className={`relative py-4 px-6 text-lg font-medium transition-all duration-300 rounded-2xl mb-2 ${
+                  isActive
+                    ? "bg-[#5EC4F0] text-white shadow-[0_4px_16px_rgba(94,196,240,0.4)]"
+                    : "text-[#1c215e]/70 hover:text-[#1c215e] hover:bg-[#5EC4F0]/10"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Overlay */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10 transition-opacity duration-500"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </>
   );
 }
