@@ -102,8 +102,7 @@ export default function Header() {
                   key={item.label}
                   href={item.href}
                   data-nav-item
-                  style={{ fontFamily: 'var(--font-wolf)' }}
-                  className={`relative px-6 py-2.5 text-sm font-medium transition-all duration-300 rounded-full ${
+                  className={`relative px-6 py-2.5 text-sm font-medium transition-all duration-300 rounded-full font-[var(--font-wolf)] ${
                     isActive
                       ? "bg-[#5EC4F0] text-white shadow-[0_4px_16px_rgba(94,196,240,0.4)]"
                       : "text-[#1c215e]/70 hover:text-[#1c215e] hover:bg-[#5EC4F0]/10"
