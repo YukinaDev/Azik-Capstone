@@ -35,7 +35,7 @@ const projects = [
     title: "Fashion Collection",
     category: "Product Design",
     year: "2024",
-    preview: "/assets/projects/pj4/Mockup 1.png",
+    preview: "/assets/projects/pj4/Mockup 4.jpg",
     gradient: "from-[#1a1a1a] via-[#4a4a4a] to-[#7a7a7a]",
   },
 ];
