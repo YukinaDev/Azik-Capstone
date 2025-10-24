@@ -23,6 +23,12 @@ const slides = [
     title: "Baby Love",
     category: "Branding & Identity",
   },
+  {
+    id: 4,
+    image: "/assets/projects/pj4/Mockup 4.jpg",
+    title: "Fashion Collection",
+    category: "Product Design",
+  },
 ];
 
 export default function AutoSlider() {
